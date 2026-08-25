@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>STUDORA — Learning Space</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* STYLE DIMUAT DARI style.css */
+    </style>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">
+                S
+            </div>
+
+            <div>
+                <h1>STUDORA</h1>
+                <span>Learning Space</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-title">MENU UTAMA</p>
+
+            <button class="nav-item active" data-page="dashboard">
+                <span>⌂</span>
+                Dashboard
+            </button>
+
+            <button class="nav-item" data-page="subjects">
+                <span>▦</span>
+                Mata Pelajaran
+            </button>
+
+            <button class="nav-item" data-page="questions">
+                <span>?</span>
+                Latihan Soal
+            </button>
+
+            <button class="nav-item" data-page="flashcards">
+                <span>◈</span>
+                Flashcard
+            </button>
+
+            <button class="nav-item" data-page="ai">
+                <span>✦</span>
+                AI Study Buddy
+            </button>
+
+            <p class="nav-title second">LAINNYA</p>
+
+            <button class="nav-item" data-page="statistics">
+                <span>◒</span>
+                Statistik
+            </button>
+
+            <button class="nav-item" data-page="settings">
+                <span>⚙</span>
+                Pengaturan
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="study-card">
+                <div class="study-card-icon">🔥</div>
+
+                <div>
+                    <strong id="streakText">0 Hari</strong>
+                    <small>Study streak</small>
+                </div>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">D</div>
+
+                <div class="profile-info">
+                    <strong>Pelajar</strong>
+                    <small>Keep learning!</small>
+                </div>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <button class="mobile-menu" id="mobileMenu">
+                ☰
+            </button>
+
+            <div class="search-box">
+                <span>⌕</span>
+                <input
+                    type="text"
+                    id="globalSearch"
+                    placeholder="Cari catatan, materi, atau mapel..."
+                >
+            </div>
+
+            <div class="top-actions">
+                <button class="icon-btn" id="themeButton" title="Tema">
+                    ☼
+                </button>
+
+                <button class="icon-btn notification-btn">
+                    ♢
+                </button>
+            </div>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section class="page active" id="dashboard">
+
+            <div class="hero">
+
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+                        <span></span>
+                        STUDY SPACE
+                    </div>
+
+                    <h2>
+                        Belajar lebih teratur,<br>
+                        <strong>pahami lebih dalam.</strong>
+                    </h2>
+
+                    <p>
+                        Simpan catatan, uji pemahaman,
+                        buat flashcard, dan gunakan AI Study Buddy
+                        untuk membantumu belajar.
+                    </p>
+
+                    <button class="primary-btn" onclick="showPage('subjects')">
+                        Mulai Belajar
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+                <div class="hero-decoration">
+
+                    <div class="floating-card card-one">
+                        <span>✓</span>
+                        <div>
+                            <strong>Belajar</strong>
+                            <small>lebih fokus</small>
+                        </div>
+                    </div>
+
+                    <div class="floating-card card-two">
+                        <span>✦</span>
+                        <div>
+                            <strong>AI Tutor</strong>
+                            <small>siap membantu</small>
+                        </div>
+                    </div>
+
+                    <div class="hero-circle">
+                        <div>ST</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-header">
+
+                <div>
+                    <span class="section-label">OVERVIEW</span>
+                    <h3>Progress belajar</h3>
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">▦</div>
+                    <div>
+                        <span>Total Mapel</span>
+                        <strong>14</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon yellow">✎</div>
+                    <div>
+                        <span>Total Catatan</span>
+                        <strong id="totalNotes">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">?</div>
+                    <div>
+                        <span>Soal Dibuat</span>
+                        <strong id="totalQuestions">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">◈</div>
+                    <div>
+                        <span>Flashcard</span>
+                        <strong id="totalFlashcards">0</strong>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="section-header">
+
+                <div>
+                    <span class="section-label">QUICK ACCESS</span>
+                    <h3>Mata pelajaran</h3>
+                </div>
+
+                <button class="text-btn" onclick="showPage('subjects')">
+                    Lihat semua →
+                </button>
+
+            </div>
+
+
+            <div class="subject-grid" id="dashboardSubjects"></div>
+
+        </section>
+
+
+        <!-- ================= SUBJECTS ================= -->
+
+        <section class="page" id="subjects">
+
+            <div class="page-heading">
+                <div>
+                    <span class="section-label">MY SUBJECTS</span>
+                    <h2>Mata Pelajaran</h2>
+                    <p>Pilih mata pelajaran untuk melihat dan menambahkan catatan.</p>
+                </div>
+            </div>
+
+            <div class="subject-grid large" id="allSubjects"></div>
+
+        </section>
+
+
+        <!-- ================= SUBJECT DETAIL ================= -->
+
+        <section class="page" id="subjectDetail">
+
+            <button class="back-btn" onclick="showPage('subjects')">
+                ← Kembali
+            </button>
+
+            <div class="detail-heading">
+
+                <div class="subject-big-icon" id="detailIcon">
+                    P
+                </div>
+
+                <div>
+                    <span class="section-label">MATA PELAJARAN</span>
+                    <h2 id="detailTitle">PPLG</h2>
+                    <p id="detailDescription">
+                        Catatan belajar kamu.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="detail-actions">
+
+                <button class="primary-btn" id="addNoteBtn">
+                    + Tambah Catatan
+                </button>
+
+                <button class="secondary-btn" id="subjectQuizBtn">
+                    🎲 Latihan Soal
+                </button>
+
+                <button class="secondary-btn" id="subjectFlashBtn">
+                    ◈ Flashcard
+                </button>
+
+            </div>
+
+
+            <div class="notes-header">
+
+                <div>
+                    <h3>Catatan Saya</h3>
+                    <span id="notesCount">0 catatan</span>
+                </div>
+
+                <input
+                    type="text"
+                    id="noteSearch"
+                    placeholder="Cari catatan..."
+                >
+
+            </div>
+
+            <div class="notes-list" id="notesList"></div>
+
+        </section>
+
+
+        <!-- ================= QUESTIONS ================= -->
+
+        <section class="page" id="questions">
+
+            <div class="page-heading">
+
+                <div>
+                    <span class="section-label">PRACTICE</span>
+                    <h2>Latihan Soal</h2>
+                    <p>
+                        Uji pemahamanmu dengan soal random
+                        atau buat soal sendiri.
+                    </p>
+                </div>
+
+                <button class="primary-btn" id="createQuestionBtn">
+                    + Buat Soal
+                </button>
+
+            </div>
+
+
+            <div class="question-layout">
+
+                <div class="quiz-card">
+
+                    <div class="quiz-top">
+
+                        <span class="quiz-badge">
+                            RANDOM QUIZ
+                        </span>
+
+                        <span id="quizNumber">
+                            Soal 1
+                        </span>
+
+                    </div>
+
+                    <div class="quiz-question" id="quizQuestion">
+                        Belum ada soal.
+                    </div>
+
+                    <div class="quiz-options" id="quizOptions"></div>
+
+                    <div class="quiz-footer">
+
+                        <button
+                            class="secondary-btn"
+                            id="randomQuestionBtn"
+                        >
+                            🎲 Soal Random
+                        </button>
+
+                        <button
+                            class="primary-btn"
+                            id="nextQuestionBtn"
+                        >
+                            Soal Berikutnya →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="quiz-side">
+
+                    <div class="mini-card">
+
+                        <div class="mini-card-icon">🎯</div>
+
+                        <h3>Target Belajar</h3>
+
+                        <p>
+                            Kerjakan soal setelah membaca
+                            catatan agar materi lebih melekat.
+                        </p>
+
+                        <div class="progress">
+                            <div id="quizProgress"></div>
+                        </div>
+
+                        <small id="quizScore">
+                            Skor: 0
+                        </small>
+
+                    </div>
+
+
+                    <div class="mini-card yellow-card">
+
+                        <div class="mini-card-icon">✦</div>
+
+                        <h3>Buat Soal Sendiri</h3>
+
+                        <p>
+                            Tambahkan soal pilihan ganda
+                            sesuai materi yang kamu pelajari.
+                        </p>
+
+                        <button
+                            class="outline-btn"
+                            id="createQuestionBtn2"
+                        >
+                            Tambahkan Soal
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FLASHCARDS ================= -->
+
+        <section class="page" id="flashcards">
+
+            <div class="page-heading">
+
+                <div>
+                    <span class="section-label">MEMORY BOOST</span>
+                    <h2>Flashcard</h2>
+                    <p>
+                        Gunakan flashcard untuk mengingat
+                        konsep-konsep penting.
+                    </p>
+                </div>
+
+                <button class="primary-btn" id="createFlashcardBtn">
+                    + Buat Flashcard
+                </button>
+
+            </div>
+
+
+            <div class="flashcard-container">
+
+                <div class="flashcard" id="flashcard">
+
+                    <div class="flashcard-inner">
+
+                        <div class="flashcard-front">
+
+                            <span>PERTANYAAN</span>
+
+                            <h2 id="flashFront">
+                                Belum ada flashcard
+                            </h2>
+
+                            <small>
+                                Klik kartu untuk membalik
+                            </small>
+
+                        </div>
+
+                        <div class="flashcard-back">
+
+                            <span>JAWABAN</span>
+
+                            <h2 id="flashBack">
+                                -
+                            </h2>
+
+                            <small>
+                                Klik kartu untuk kembali
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="flash-controls">
+
+                <button class="secondary-btn" id="previousFlash">
+                    ← Sebelumnya
+                </button>
+
+                <span id="flashCounter">
+                    0 / 0
+                </span>
+
+                <button class="primary-btn" id="nextFlash">
+                    Berikutnya →
+                </button>
+
+            </div>
+
+
+            <div class="flash-list" id="flashList"></div>
+
+        </section>
+
+
+        <!-- ================= AI ================= -->
+
+        <section class="page" id="ai">
+
+            <div class="ai-page">
+
+                <div class="ai-header">
+
+                    <div class="ai-logo">
+                        ✦
+                    </div>
+
+                    <div>
+                        <span class="section-label">
+                            STUDORA AI
+                        </span>
+
+                        <h2>AI Study Buddy</h2>
+
+                        <p>
+                            Bingung dengan materi?
+                            Tanyakan apa saja mengenai pelajaranmu.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="ai-chat" id="aiChat">
+
+                    <div class="chat-message bot">
+
+                        <div class="chat-avatar">
+                            ✦
+                        </div>
+
+                        <div class="message">
+
+                            <strong>Study Buddy</strong>
+
+                            <p>
+                                Hai! 👋 Aku bisa membantumu memahami
+                                materi. Coba tanyakan sesuatu seperti:
+                                <br><br>
+
+                                <em>
+                                    "Apa itu variabel dalam pemrograman?"
+                                </em>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ai-suggestions">
+
+                    <button data-question="Jelaskan materi ini dengan sederhana">
+                        💡 Jelaskan dengan sederhana
+                    </button>
+
+                    <button data-question="Buatkan contoh dari materi ini">
+                        📝 Berikan contoh
+                    </button>
+
+                    <button data-question="Apa yang harus saya ingat dari materi ini?">
+                        🎯 Poin penting
+                    </button>
+
+                </div>
+
+
+                <div class="ai-input">
+
+                    <textarea
+                        id="aiInput"
+                        placeholder="Tanyakan sesuatu kepada Study Buddy..."
+                    ></textarea>
+
+                    <button id="sendAi">
+                        ↑
+                    </button>
+
+                </div>
+
+                <small class="ai-disclaimer">
+                    Study Buddy bawaan bekerja menggunakan materi dan
+                    pengetahuan lokal aplikasi. Untuk AI generatif
+                    sungguhan, sambungkan backend/API yang aman.
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= STATISTICS ================= -->
+
+        <section class="page" id="statistics">
+
+            <div class="page-heading">
+
+                <div>
+                    <span class="section-label">YOUR PROGRESS</span>
+                    <h2>Statistik Belajar</h2>
+                    <p>
+                        Lihat perkembangan aktivitas belajarmu.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="statistics-grid">
+
+                <div class="big-stat">
+                    <span>Total Catatan</span>
+                    <strong id="statNotes">0</strong>
+                    <small>catatan tersimpan</small>
+                </div>
+
+                <div class="big-stat">
+                    <span>Total Soal</span>
+                    <strong id="statQuestions">0</strong>
+                    <small>soal tersedia</small>
+                </div>
+
+                <div class="big-stat">
+                    <span>Flashcard</span>
+                    <strong id="statFlashcards">0</strong>
+                    <small>kartu tersedia</small>
+                </div>
+
+                <div class="big-stat">
+                    <span>Quiz Score</span>
+                    <strong id="statScore">0</strong>
+                    <small>jawaban benar</small>
+                </div>
+
+            </div>
+
+
+            <div class="subject-progress">
+
+                <h3>Aktivitas per Mapel</h3>
+
+                <div id="progressList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SETTINGS ================= -->
+
+        <section class="page" id="settings">
+
+            <div class="page-heading">
+
+                <div>
+                    <span class="section-label">PREFERENCES</span>
+                    <h2>Pengaturan</h2>
+                    <p>
+                        Atur aplikasi belajar sesuai kebutuhanmu.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="settings-card">
+
+                <div class="setting-row">
+
+                    <div>
+                        <strong>Tema Gelap</strong>
+                        <small>
+                            Gunakan tampilan gelap untuk belajar malam.
+                        </small>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" id="darkMode">
+                        <span></span>
+                    </label>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+                        <strong>Hapus Semua Data</strong>
+                        <small>
+                            Menghapus catatan, soal, dan flashcard.
+                        </small>
+                    </div>
+
+                    <button class="danger-btn" id="clearData">
+                        Reset Data
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================= MODAL NOTE ================= -->
+
+<div class="modal" id="noteModal">
+
+    <div class="modal-box">
+
+        <button class="modal-close" data-close="noteModal">
+            ×
+        </button>
+
+        <span class="section-label">CATATAN BARU</span>
+
+        <h2>Tambah Catatan</h2>
+
+        <label>Judul Catatan</label>
+
+        <input
+            type="text"
+            id="noteTitle"
+            placeholder="Contoh: Variabel dalam JavaScript"
+        >
+
+        <label>Isi Catatan</label>
+
+        <textarea
+            id="noteContent"
+            rows="8"
+            placeholder="Tulis materi yang kamu pelajari..."
+        ></textarea>
+
+        <button class="primary-btn full" id="saveNote">
+            Simpan Catatan
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MODAL QUESTION ================= -->
+
+<div class="modal" id="questionModal">
+
+    <div class="modal-box">
+
+        <button class="modal-close" data-close="questionModal">
+            ×
+        </button>
+
+        <span class="section-label">QUESTION BUILDER</span>
+
+        <h2>Buat Soal</h2>
+
+        <label>Mata Pelajaran</label>
+
+        <select id="questionSubject"></select>
+
+        <label>Pertanyaan</label>
+
+        <textarea
+            id="questionText"
+            rows="3"
+            placeholder="Tulis pertanyaan..."
+        ></textarea>
+
+        <div class="option-input">
+            <label>Opsi A</label>
+            <input id="optionA" type="text">
+        </div>
+
+        <div class="option-input">
+            <label>Opsi B</label>
+            <input id="optionB" type="text">
+        </div>
+
+        <div class="option-input">
+            <label>Opsi C</label>
+            <input id="optionC" type="text">
+        </div>
+
+        <div class="option-input">
+            <label>Opsi D</label>
+            <input id="optionD" type="text">
+        </div>
+
+        <label>Jawaban Benar</label>
+
+        <select id="correctAnswer">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+        </select>
+
+        <button class="primary-btn full" id="saveQuestion">
+            Simpan Soal
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MODAL FLASHCARD ================= -->
+
+<div class="modal" id="flashModal">
+
+    <div class="modal-box">
+
+        <button class="modal-close" data-close="flashModal">
+            ×
+        </button>
+
+        <span class="section-label">FLASHCARD BUILDER</span>
+
+        <h2>Buat Flashcard</h2>
+
+        <label>Mata Pelajaran</label>
+
+        <select id="flashSubject"></select>
+
+        <label>Pertanyaan / Depan</label>
+
+        <textarea
+            id="flashFrontInput"
+            rows="4"
+            placeholder="Contoh: Apa itu HTML?"
+        ></textarea>
+
+        <label>Jawaban / Belakang</label>
+
+        <textarea
+            id="flashBackInput"
+            rows="4"
+            placeholder="Contoh: HTML adalah..."
+        ></textarea>
+
+        <button class="primary-btn full" id="saveFlashcard">
+            Simpan Flashcard
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="toast" id="toast">
+    <span>✓</span>
+    <p>Berhasil!</p>
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
